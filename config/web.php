@@ -11,10 +11,21 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'container' => [
+        'definitions' => [
+            \logger\Logger::class => [
+                'loggerType' => 'file'
+            ],
+            \logger\EmailTarget::class => [
+                'from' => 'log@gmail.com',
+                'to' => 'admin@gmail.com',
+            ]
+        ]
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'l2MEKLzhfvrOzv2G2nu1nPYNG3thoZFx',
+            'cookieValidationKey' => '5BzQqIuMfDf71E8prliq1qJ60eV5L4hn',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -33,23 +44,14 @@ $config = [
             'useFileTransport' => true,
         ],
         'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class' => 'yii\log\DbTarget',
                     'levels' => ['error', 'warning'],
                 ],
             ],
         ],
         'db' => $db,
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
     ],
     'params' => $params,
 ];
